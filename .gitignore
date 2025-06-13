@@ -1,0 +1,57 @@
+﻿# Build output folders
+bin/
+obj/
+
+# Visual Studio specific files and folders
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Rider IDE files
+.idea/
+
+# Resharper files
+_ReSharper*/
+*.DotSettings.user
+
+# DotCover files
+*.dotCover
+
+# Test result files
+TestResults/
+*.trx
+
+# NCrunch test runner files
+*.ncrunch*
+_ncrunch_*/
+
+# Coverage results
+*.coverage
+*.coveragexml
+
+# Others
+*.log
+*.vspscc
+*.vssscc
+*.pdb
+*.cache
+*.bak
+*.Backup
+*.tmp
+*.temp
+
+# Package folders
+packages/
+
+# Node modules if you have any node parts
+node_modules/
+
+# NuGet Packages
+*.nupkg
+*.snupkg
+.nuget/
+
+# VS Code settings folder if used
+.vscode/
