@@ -26,7 +26,10 @@ public class InvoicePage
     public static readonly By InvoiceEntries = By.XPath("//div[contains(@class, 'MuiBox-root') and .//p]");
 
     public static readonly By EditDialogHeader = By.XPath("//h2[contains(text(),'Edit') or contains(text(),'Update')]");
+   
+    public static readonly By GenerateInvoiceCheckbox = By.XPath("//input[@type='checkbox' and @name='generateInvoice']"); // example
 
+   
 
 
     public void Navigate() => driver.Navigate().GoToUrl("http://localhost:3000/Invoice");
@@ -34,7 +37,7 @@ public class InvoicePage
     public bool IsHeadingPresent() => IsVisible(Heading);
     public bool IsGenerateInvoiceButtonPresent() => IsVisible(GenerateInvoiceButton);
 
-    private bool IsVisible(By selector)
+    public bool IsVisible(By selector)
     {
         try
         {

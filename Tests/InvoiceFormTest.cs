@@ -126,7 +126,47 @@ public class InvoiceFormTests : TestBase
 
         Assert.True(invoiceItems.Count > 0, "No invoice entries found.");
     }
+    //[Fact]
+    //public void InvoicePage_Should_Fail_When_NonExistentButton_IsChecked()
+    //{
+    //    var loginPage = new LoginPage(driver);
+    //    loginPage.Navigate();
+    //    loginPage.Login("admin@gmail.com", "admin");
 
+    //    var invoicePage = new InvoicePage(driver);
+    //    invoicePage.Navigate();
+
+    //    try
+    //    {
+    //        var fakeButton = driver.FindElement(By.Id("non-existent-button"));
+    //        Assert.True(fakeButton.Displayed, "Non-existent button is not displayed (unexpected).");
+    //    }
+    //    catch (NoSuchElementException)
+    //    {
+    //        // Fail the test with meaningful message
+    //        Assert.True(false, "Expected button with id 'non-existent-button' was not found on the page.");
+    //    }
+    //}
+
+    [Fact]
+public void InvoicePage_Should_Fail_When_GenerateInvoiceCheckbox_IsNotChecked()
+    {
+        var loginPage = new LoginPage(driver);
+        loginPage.Navigate();
+        loginPage.Login("admin@gmail.com", "admin");
+
+        var invoicePage = new InvoicePage(driver);
+        invoicePage.Navigate();
+
+        // Try to find checkbox safely:
+        var checkboxExists = invoicePage.IsVisible(InvoicePage.GenerateInvoiceCheckbox);
+        Assert.True(checkboxExists, "Checkbox 'Generate Invoice' not found.");
+
+        var checkbox = driver.FindElement(InvoicePage.GenerateInvoiceCheckbox);
+
+        // Assert it is checked (expected, but will fail if unchecked)
+        Assert.True(checkbox.Selected, "Expected 'Generate Invoice' checkbox to be checked by default, but it is not.");
+    }
 
 
 }

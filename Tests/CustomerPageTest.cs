@@ -57,5 +57,36 @@ public class CustomerPageTests : TestBase
         Assert.True(customerItems.Count > 0, "No customer entries found.");
     }
 
+    [Fact]
+    public void CustomerPage_Should_Fail_When_Heading_Is_Wrong()
+    {
+        var loginPage = new LoginPage(driver);
+        loginPage.Navigate();
+        loginPage.Login("admin@gmail.com", "admin");
+
+        var customerPage = new CustomerPage(driver);
+        customerPage.Navigate();
+
+        // Expecting wrong heading text on purpose to trigger failure
+        Assert.True(customerPage.IsHeadingPresent("Customers That Do Not Exist"), "Incorrect: Heading 'Customers That Do Not Exist' not found.");
+    }
+
+    [Fact]
+    public void CustomerPage_Should_Fail_When_ValidationMessage_Is_NotDisplayed()
+    {
+        var loginPage = new LoginPage(driver);
+        loginPage.Navigate();
+        loginPage.Login("admin@gmail.com", "admin");
+
+        var customerPage = new CustomerPage(driver);
+        customerPage.Navigate();
+
+        customerPage.OpenAddCustomerDialog();
+        customerPage.SubmitForm();
+
+        // Expecting validation for a made-up field
+        Assert.True(customerPage.IsValidationMessageDisplayed("Customer Email is required"), "Validation for 'Customer Phone is required' not found.");
+    }
+
 
 }
